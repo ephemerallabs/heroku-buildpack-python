@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+set-env GIT_SHA $(git log -1 --format="%h")
