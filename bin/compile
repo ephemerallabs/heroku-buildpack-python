@@ -46,6 +46,9 @@ export PATH=$PATH:$ROOT_DIR/vendor/pip-pop
 [ ! "$REQUEST_ID" ] && REQUEST_ID=$SLUG_ID
 [ ! "$STACK" ] && STACK=$DEFAULT_PYTHON_STACK
 
+unset GIT_SHA
+export GIT_SHA=$(git log -1 --format="%h")
+
 # Sanitizing environment variables.
 unset GIT_DIR PYTHONHOME PYTHONPATH LD_LIBRARY_PATH LIBRARY_PATH
 
@@ -200,7 +203,6 @@ set-default-env PYTHONPATH /app/
 
 # Install sane-default script for WEB_CONCURRENCY environment variable.
 cp $ROOT_DIR/vendor/python.webconcurrency.sh $WEBCONCURRENCY_PROFILE_PATH
-
 
 # Experimental post_compile hook.
 bpwatch start post_compile
