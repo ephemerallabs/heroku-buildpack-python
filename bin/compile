@@ -28,6 +28,9 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/python.sh"
 DEFAULT_PYTHON_VERSION="python-2.7.3"
 PYTHON_EXE="/app/.heroku/python/bin/python"
 
+unset GIT_SHA
+export GIT_SHA=$(git log -1 --format="%h")
+
 # Sanitizing environment variables.
 unset GIT_DIR PYTHONHOME PYTHONPATH LD_LIBRARY_PATH LIBRARY_PATH
 
@@ -177,6 +180,9 @@ set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 set-default-env PYTHONPATH /app/
 
+# Call the script to set the git sha as a config var
+set-env GIT_SHA '$GIT_SHA'
+python git-sha-config.py
 
 # Experimental post_compile hook.
 source $BIN_DIR/steps/hooks/post_compile
