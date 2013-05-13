@@ -153,18 +153,6 @@ bpwatch start restore_cache
   done
 bpwatch stop restore_cache
 
-# Install GEOS
-if [ ! -d $CACHE_DIR/gdal ]; then
-  cd $BUILD_DIR
-  echo "-----> Fetching and installing GEOS 3.3.2"
-  curl -O https://s3.amazonaws.com/cirheroku/geos-3.3.2-herkou.tar.gz >/dev/null 2>&1
-  echo "-----> Installing ..."
-  tar xzvf geos-3.3.2-herkou.tar.gz >/dev/null 2>&1
-  mv geos $CACHE_DIR/geos
-  rm geos-3.3.2-herkou.tar.gz
-  echo "GEOS installed" | indent
-fi
-
 set +e
 # Create set-aside `.heroku` folder.
 mkdir .heroku &> /dev/null
@@ -192,6 +180,22 @@ source $BIN_DIR/steps/cryptography
 
 # GDAL support.
 source $BIN_DIR/steps/gdal
+
+# Install GEOS
+if [ ! -d $CACHE_DIR/gdal ]; then
+  cd $BUILD_DIR
+  echo "-----> Fetching and installing GEOS 3.3.2"
+  curl -O https://s3.amazonaws.com/cirheroku/geos-3.3.2-herkou.tar.gz >/dev/null 2>&1
+  echo "-----> Installing ..."
+  tar xzvf geos-3.3.2-herkou.tar.gz >/dev/null 2>&1
+  mv geos $CACHE_DIR/geos
+  rm geos-3.3.2-herkou.tar.gz
+  echo "GEOS installed" | indent
+fi
+
+# Create set-aside .geodjango folder and copy compiled files
+mkdir -p .geodjango
+cp -R $CACHE_DIR/geos .geodjango
 
 # Install dependencies with Pip.
 source $BIN_DIR/steps/pip-install
