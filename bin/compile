@@ -161,11 +161,11 @@ fi
 if [ ! -d $CACHE_DIR/gdal ]; then
   cd $BUILD_DIR
   echo "-----> Fetching and installing GDAL 1.10.0"
-  curl -O http://wapu-lib.s3.amazonaws.com/gdal-1.10.0-heroku.tar.gz >/dev/null 2>&1
+  curl -O https://wapu-lib.s3.amazonaws.com/gdal-1.10.0-heroku.tar.gz >/dev/null 2>&1
   echo "-----> Installing ..."
   tar xzvf dal-1.10.0-heroku.tar.gz >/dev/null 2>&1
   mv gdal-1.10.0-heroku $CACHE_DIR/gdal
-  rm dal-1.10.0-heroku.tar.gz
+  rm gdal-1.10.0-heroku.tar.gz
   echo "GDAL installed" | indent
 fi
 
