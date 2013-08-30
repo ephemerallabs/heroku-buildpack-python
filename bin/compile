@@ -157,9 +157,22 @@ if [ ! -d $CACHE_DIR/geos ]; then
   echo "GEOS installed" | indent
 fi
 
+# Install GDAL
+if [ ! -d $CACHE_DIR/gdal ]; then
+  cd $BUILD_DIR
+  echo "-----> Fetching and installing GDAL 1.8.1"
+  curl -O https://s3.amazonaws.com/cirheroku/gdal-1.8.1-heroku.tar.gz >/dev/null 2>&1
+  echo "-----> Installing ..."
+  tar xzvf gdal-1.8.1-heroku.tar.gz >/dev/null 2>&1
+  mv gdal $CACHE_DIR/gdal
+  rm gdal-1.8.1-heroku.tar.gz
+  echo "GDAL installed" | indent
+fi
+
 # Create set-aside .geodjango folder and copy compiled files
 mkdir -p .geodjango
 cp -R $CACHE_DIR/geos .geodjango
+cp -R $CACHE_DIR/gdal .geodjango
 
 # Pylibmc support.
 # See [`bin/steps/pylibmc`](pylibmc.html).
