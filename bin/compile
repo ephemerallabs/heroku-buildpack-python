@@ -185,7 +185,7 @@ source $BIN_DIR/steps/gdal
 if [ ! -d $CACHE_DIR/geos-$GEOS_VERSION ]; then
   cd $BUILD_DIR
   puts-step "Fetching and installing GEOS ($GEOS_VERSION)"
-  curl -O https://s3.amazonaws.com/cirheroku/geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
+  curl -O https://wapu-lib.s3.amazonaws.com/geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
   puts-step "Installing ..."
   tar xzvf geos-$GEOS_VERSION-heroku.tar.gz >/dev/null 2>&1
   mv geos $CACHE_DIR/geos-$GEOS_VERSION
