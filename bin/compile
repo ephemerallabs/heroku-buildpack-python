@@ -187,9 +187,9 @@ if [ ! -d $CACHE_DIR/geos-$GEOS_VERSION ]; then
   puts-step "Fetching and installing GEOS ($GEOS_VERSION)"
   curl -O https://s3.amazonaws.com/cirheroku/geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
   puts-step "Installing ..."
-  tar xzvf geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
+  tar xzvf geos-$GEOS_VERSION-heroku.tar.gz >/dev/null 2>&1
   mv geos $CACHE_DIR/geos-$GEOS_VERSION
-  rm geos-$GEOS_VERSION-herkou.tar.gz
+  rm geos-$GEOS_VERSION-heroku.tar.gz
   puts-step "GEOS installed"
 fi
 
