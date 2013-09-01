@@ -220,6 +220,7 @@ if [ ! -d $CACHE_DIR/gdal ]; then
 fi
 
 # Create set-aside .geodjango folder and copy compiled files
+cd $BUILD_DIR
 mkdir -p .geodjango
 cp -R $CACHE_DIR/geos .geodjango
 cp -R $CACHE_DIR/gdal .geodjango
@@ -236,6 +237,16 @@ if (grep -Fiq "hg+" requirements.txt) then
     /app/.heroku/python/bin/pip install  mercurial | cleanup | indent
   bpwatch stop mercurial_install
 fi
+
+# Set context environment variables.
+set-env PATH '$HOME/.heroku/python/bin:/app/.geodjango/gdal/bin:/app/.geodjango/geos/bin:$PATH'
+set-env PYTHONUNBUFFERED true
+set-env PYTHONHOME /app/.heroku/python
+set-default-env LIBRARY_PATH /app/.heroku/vendor/lib:/app/.geodjango/gdal/lib:/app/.geodjango/geos/lib
+set-default-env LD_LIBRARY_PATH /app/.heroku/vendor/lib:/app/.geodjango/gdal/lib:/app/.geodjango/geos/lib
+set-default-env LANG en_US.UTF-8
+set-default-env PYTHONHASHSEED random
+set-default-env PYTHONPATH /app/
 
 # Install dependencies with Pip.
 puts-step "Installing dependencies using Pip ($PIP_VERSION)"
@@ -256,16 +267,6 @@ bpwatch stop collectstatic
 
 # ### Finalize
 #
-
-# Set context environment variables.
-set-env PATH '$HOME/.heroku/python/bin:$PATH'
-set-env PYTHONUNBUFFERED true
-set-env PYTHONHOME /app/.heroku/python
-set-default-env LIBRARY_PATH /app/.heroku/vendor/lib
-set-default-env LD_LIBRARY_PATH /app/.heroku/vendor/lib
-set-default-env LANG en_US.UTF-8
-set-default-env PYTHONHASHSEED random
-set-default-env PYTHONPATH /app/
 
 # Call the script to set the git sha as a config var
 set-env GIT_SHA '$GIT_SHA'
