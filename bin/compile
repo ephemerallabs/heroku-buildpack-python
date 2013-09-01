@@ -205,7 +205,7 @@ if [ ! -d $CACHE_DIR/gdal-$GDAL_VERSION ]; then
   puts-step "GDAL installed"
 fi
 
-# Create set-aside .geodjango folder and copy compiled files
+# Create set-aside vendor folder and copy compiled files
 cd $BUILD_DIR
 mkdir -p vendor
 cp -R $CACHE_DIR/geos-$GEOS_VERSION vendor
@@ -215,8 +215,6 @@ cp -R $CACHE_DIR/gdal-$GDAL_VERSION vendor
 export PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/bin:$BUILD_DIR/vendor/geos-$GEOS_VERSION/bin:$PATH
 export LIBRARY_PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/lib:$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/lib:$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LD_LIBRARY_PATH
-# export EXTRA_CPPFLAGS="-I$BUILD_DIR/.geodjango/gdal/include"
-# export EXTRA_LDFLAGS="-L$BUILD_DIR/.geodjango/gdal/lib -Wl,-rpath,$BUILD_DIR/.geodjango/gdal/lib"
 
  #Pylibmc support.
 # See [`bin/steps/pylibmc`](pylibmc.html).
