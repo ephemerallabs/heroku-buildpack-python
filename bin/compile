@@ -223,11 +223,11 @@ if [ ! -d $CACHE_DIR/gdal/$GDAL_VERSION ]; then
   puts-step "GDAL installed"
 fi
 
-if [ -d .geodjango/geos]; then
+if [ -d .geodjango/geos ]; then
   rm -r .geodjango/geos
 fi
 
-if [ -d .geodjango/gdal]; then
+if [ -d .geodjango/gdal ]; then
   rm -r .geodjango/gdal
 fi
 
