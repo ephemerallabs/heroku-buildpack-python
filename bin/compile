@@ -182,51 +182,40 @@ source $BIN_DIR/steps/cryptography
 source $BIN_DIR/steps/gdal
 
 # Install GEOS
-if [ ! -d $CACHE_DIR/geos/$GEOS_VERSION ]; then
+if [ ! -d $CACHE_DIR/geos-$GEOS_VERSION ]; then
   cd $BUILD_DIR
   puts-step "Fetching and installing GEOS ($GEOS_VERSION)"
   curl -O https://s3.amazonaws.com/cirheroku/geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
   puts-step "Installing ..."
   tar xzvf geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
-  mkdir -p $CACHE_DIR/geos
-  mv geos $CACHE_DIR/geos/$GEOS_VERSION
+  mv geos $CACHE_DIR/geos-$GEOS_VERSION
   rm geos-$GEOS_VERSION-herkou.tar.gz
   puts-step "GEOS installed"
 fi
 
 # Install GDAL
-if [ ! -d $CACHE_DIR/gdal/$GDAL_VERSION ]; then
+if [ ! -d $CACHE_DIR/gdal-$GDAL_VERSION ]; then
   cd $BUILD_DIR
   puts-step "Fetching and installing GDAL ($GDAL_VERSION)"
   curl -O https://wapu-lib.s3.amazonaws.com/gdal-$GDAL_VERSION-heroku.tar.gz >/dev/null 2>&1
   puts-step "Installing ..."
   tar xzvf gdal-$GDAL_VERSION-heroku.tar.gz >/dev/null 2>&1
-  mkdir -p $CACHE_DIR/gdal
-  mv gdal $CACHE_DIR/gdal/$GDAL_VERSION
+  mv gdal $CACHE_DIR/gdal-$GDAL_VERSION
   rm gdal-$GDAL_VERSION-heroku.tar.gz
   puts-step "GDAL installed"
 fi
 
-if [ -d .geodjango/geos ]; then
-  rm -r .geodjango/geos
-fi
-
-if [ -d .geodjango/gdal ]; then
-  rm -r .geodjango/gdal
-fi
-
 # Create set-aside .geodjango folder and copy compiled files
 cd $BUILD_DIR
-mkdir -p .geodjango/geos
-mkdir -p .geodjango/gdal
-cp -R $CACHE_DIR/geos/$GEOS_VERSION/* .geodjango/geos
-cp -R $CACHE_DIR/gdal/$GDAL_VERSION/* .geodjango/gdal
+mkdir -p vendor
+cp -R $CACHE_DIR/geos-$GEOS_VERSION vendor
+cp -R $CACHE_DIR/gdal-$GDAL_VERSION vendor
 
 # Add GEOS and GDAL to paths
-export PATH=$BUILD_DIR/.geodjango/gdal/bin:$BUILD_DIR/.geodjango/geos/bin:$PATH
-export LIBRARY_PATH=$BUILD_DIR/.geodjango/gdal/lib:$BUILD_DIR/.geodjango/geos/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=$BUILD_DIR/.geodjango/gdal/lib:$BUILD_DIR/.geodjango/geos/lib:$LD_LIBRARY_PATH
-export EXTRA_CPPFLAGS="-I$BUILD_DIR/.geodjango/gdal/include"
+export PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/bin:$BUILD_DIR/vendor/geos-$GEOS_VERSION/bin:$PATH
+export LIBRARY_PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/lib:$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/lib:$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LD_LIBRARY_PATH
+# export EXTRA_CPPFLAGS="-I$BUILD_DIR/.geodjango/gdal/include"
 # export EXTRA_LDFLAGS="-L$BUILD_DIR/.geodjango/gdal/lib -Wl,-rpath,$BUILD_DIR/.geodjango/gdal/lib"
 
  #Pylibmc support.
