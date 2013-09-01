@@ -242,8 +242,10 @@ cp -R $CACHE_DIR/gdal/$GDAL_VERSION/* .geodjango/gdal
 export PATH=$BUILD_DIR/.geodjango/gdal/bin:$BUILD_DIR/.geodjango/geos/bin:$PATH
 export LIBRARY_PATH=$BUILD_DIR/.geodjango/gdal/lib:$BUILD_DIR/.geodjango/geos/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=$BUILD_DIR/.geodjango/gdal/lib:$BUILD_DIR/.geodjango/geos/lib:$LD_LIBRARY_PATH
+export EXTRA_CPPFLAGS="-I$BUILD_DIR/.geodjango/gdal/include"
+# export EXTRA_LDFLAGS="-L$BUILD_DIR/.geodjango/gdal/lib -Wl,-rpath,$BUILD_DIR/.geodjango/gdal/lib"
 
-# Pylibmc support.
+ #Pylibmc support.
 # See [`bin/steps/pylibmc`](pylibmc.html).
 bpwatch start pylibmc_install
   source $BIN_DIR/steps/pylibmc
