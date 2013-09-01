@@ -206,6 +206,7 @@ if [ ! -d $CACHE_DIR/gdal ]; then
 fi
 
 # Create set-aside .geodjango folder and copy compiled files
+cd $BUILD_DIR
 mkdir -p .geodjango
 cp -R $CACHE_DIR/geos .geodjango
 cp -R $CACHE_DIR/gdal .geodjango
@@ -218,6 +219,16 @@ source $BIN_DIR/steps/pylibmc
 if (grep -Fiq "hg+" requirements.txt) then
   pip install --use-mirrors mercurial | cleanup | indent
 fi
+
+# Set context environment variables.
+set-env PATH '$HOME/.heroku/python/bin:/app/.geodjango/gdal/bin:/app/.geodjango/geos/bin:$PATH'
+set-env PYTHONUNBUFFERED true
+set-env PYTHONHOME /app/.heroku/python
+set-default-env LIBRARY_PATH /app/.heroku/vendor/lib:/app/.geodjango/gdal/lib:/app/.geodjango/geos/lib
+set-default-env LD_LIBRARY_PATH /app/.heroku/vendor/lib:/app/.geodjango/gdal/lib:/app/.geodjango/geos/lib
+set-default-env LANG en_US.UTF-8
+set-default-env PYTHONHASHSEED random
+set-default-env PYTHONPATH /app/
 
 # Install dependencies with Pip.
 source $BIN_DIR/steps/pip-install
