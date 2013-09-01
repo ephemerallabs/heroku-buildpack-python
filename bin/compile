@@ -184,10 +184,11 @@ source $BIN_DIR/steps/gdal
 # Install GEOS
 if [ ! -d $CACHE_DIR/geos/$GEOS_VERSION ]; then
   cd $BUILD_DIR
-  puts-step "-----> Fetching and installing GEOS $GEOS_VERSION"
+  puts-step "Fetching and installing GEOS ($GEOS_VERSION)"
   curl -O https://s3.amazonaws.com/cirheroku/geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
-  puts-step "-----> Installing ..."
+  puts-step "Installing ..."
   tar xzvf geos-$GEOS_VERSION-herkou.tar.gz >/dev/null 2>&1
+  mkdir -p $CACHE_DIR/geos
   mv geos $CACHE_DIR/geos/$GEOS_VERSION
   rm geos-$GEOS_VERSION-herkou.tar.gz
   puts-step "GEOS installed"
@@ -196,10 +197,11 @@ fi
 # Install GDAL
 if [ ! -d $CACHE_DIR/gdal/$GDAL_VERSION ]; then
   cd $BUILD_DIR
-  puts-step "-----> Fetching and installing GDAL $GDAL_VERSION"
+  puts-step "Fetching and installing GDAL ($GDAL_VERSION)"
   curl -O https://wapu-lib.s3.amazonaws.com/gdal-$GDAL_VERSION-heroku.tar.gz >/dev/null 2>&1
-  puts-step "-----> Installing ..."
+  puts-step "Installing ..."
   tar xzvf gdal-$GDAL_VERSION-heroku.tar.gz >/dev/null 2>&1
+  mkdir -p $CACHE_DIR/gdal
   mv gdal $CACHE_DIR/gdal/$GDAL_VERSION
   rm gdal-$GDAL_VERSION-heroku.tar.gz
   puts-step "GDAL installed"
