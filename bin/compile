@@ -206,14 +206,14 @@ if [ ! -d $CACHE_DIR/gdal-$GDAL_VERSION ]; then
 fi
 
 # Install wkhtmltopdf
-if [ ! -d $CACHE_DIR/gdal-$WKHTMLTOPDF_VERSION ]; then
+if [ ! -d $CACHE_DIR/wkhtmltopdf-amd64-$WKHTMLTOPDF_VERSION ]; then
   cd $BUILD_DIR
   puts-step "Fetching and installing wkhtmltopdf ($WKHTMLTOPDF_VERSION) https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz"
   curl -O https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
   puts-step "Installing ..."
   tar xzvf wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
   puts-step "Moving ..."
-  mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf-amd64-$WKHTMLTOPDF_VERSION
+  mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf
   puts-step "Removing ..."
   rm wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz
   puts-step "Wkhtmltopdf installed"
@@ -224,10 +224,10 @@ cd $BUILD_DIR
 mkdir -p vendor
 cp -R $CACHE_DIR/geos-$GEOS_VERSION vendor
 cp -R $CACHE_DIR/gdal-$GDAL_VERSION vendor
-cp -R $CACHE_DIR/wkhtmltopdf-amd64-$WKHTMLTOPDF_VERSION vendor
+cp -R $CACHE_DIR/wkhtmltopdf vendor
 
 # Add GEOS and GDAL to paths AND wkhtmltopdf
-export PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/bin:$BUILD_DIR/vendor/geos-$GEOS_VERSION/bin:$BUILD_DIR/vendor/wkhtmltopdf-amd64-$WKHTMLTOPDF_VERSION:$PATH
+export PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/bin:$BUILD_DIR/vendor/geos-$GEOS_VERSION/bin:$BUILD_DIR/vendor:$PATH
 export LIBRARY_PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/lib:$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=$BUILD_DIR/vendor/gdal-$GDAL_VERSION/lib:$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LD_LIBRARY_PATH
 
