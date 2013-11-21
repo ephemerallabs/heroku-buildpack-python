@@ -225,7 +225,7 @@ fi
 # Install wkhtmltopdf
 if [ ! -d $CACHE_DIR/gdal-$WKHTMLTOPDF_VERSION ]; then
   cd $BUILD_DIR
-  puts-step "Fetching and installing wkhtmltopdf ($WKHTMLTOPDF_VERSION) https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.bz2"
+  puts-step "Fetching and installing wkhtmltopdf ($WKHTMLTOPDF_VERSION) https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz"
   curl -O https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
   puts-step "Installing ..."
   tar xzvf wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
