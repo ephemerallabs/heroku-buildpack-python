@@ -229,9 +229,11 @@ if [ ! -d $CACHE_DIR/gdal-$WKHTMLTOPDF_VERSION ]; then
   curl -O https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.bz2 >/dev/null 2>&1
   puts-step "Installing ..."
   tar xzvf wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.bz2 >/dev/null 2>&1
+  puts-step "Moving ..."
   mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf-amd64-$WKHTMLTOPDF_VERSION
+  puts-step "Removing ..."
   rm wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.bz2
-  puts-step "GDAL installed"
+  puts-step "Wkhtmltopdf installed"
 fi
 
 # Create set-aside vendor folder and copy compiled files
