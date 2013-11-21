@@ -232,7 +232,7 @@ if [ ! -d $CACHE_DIR/gdal-$WKHTMLTOPDF_VERSION ]; then
   puts-step "Moving ..."
   mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf-amd64-$WKHTMLTOPDF_VERSION
   puts-step "Removing ..."
-  rm wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.bz2
+  rm wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz
   puts-step "Wkhtmltopdf installed"
 fi
 
