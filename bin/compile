@@ -231,7 +231,7 @@ if [ ! -d $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION ]; then
   tar xzvf wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
   puts-step "Moving ..."
   mkdir -p $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin
-  mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin/wkhtmltopdf-amd64
+  mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin/wkhtmltopdf
   puts-step "Removing ..."
   rm wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz
   puts-step "Wkhtmltopdf installed"
