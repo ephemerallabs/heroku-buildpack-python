@@ -29,8 +29,13 @@ LEGACY_TRIGGER="lib/python2.7"
 DEFAULT_PYTHON_VERSION="python-2.7.10"
 DEFAULT_PYTHON_STACK="cedar"
 PYTHON_EXE="/app/.heroku/python/bin/python"
+<<<<<<< HEAD
 PIP_VERSION="7.1.2"
 SETUPTOOLS_VERSION="18.3.2"
+=======
+PIP_VERSION="6.0.6"
+SETUPTOOLS_VERSION="11.3.1"
+>>>>>>> removing changes, switching to multi-buildpack with vendor libs
 
 # Setup bpwatch
 export PATH=$PATH:$ROOT_DIR/vendor/bpwatch
@@ -45,9 +50,6 @@ export PATH=$PATH:$ROOT_DIR/vendor/pip-pop
 [ ! "$SLUG_ID" ] && SLUG_ID="defaultslug"
 [ ! "$REQUEST_ID" ] && REQUEST_ID=$SLUG_ID
 [ ! "$STACK" ] && STACK=$DEFAULT_PYTHON_STACK
-
-unset GIT_SHA
-export GIT_SHA=$(git log -1 --format="%h")
 
 # Sanitizing environment variables.
 unset GIT_DIR PYTHONHOME PYTHONPATH LD_LIBRARY_PATH LIBRARY_PATH
