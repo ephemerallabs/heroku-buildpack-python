@@ -168,40 +168,40 @@ source $BIN_DIR/steps/mercurial
 # Install GEOS
 if [ ! -d $CACHE_DIR/geos-$GEOS_VERSION ]; then
   cd $BUILD_DIR
-  puts-step "Fetching and installing GEOS ($GEOS_VERSION)"
+  echo "Fetching and installing GEOS ($GEOS_VERSION)"
   curl -O https://wapu-lib.s3.amazonaws.com/geos-$GEOS_VERSION-heroku.tar.gz >/dev/null 2>&1
-  puts-step "Installing ..."
+  echo "Installing ..."
   tar xzvf geos-$GEOS_VERSION-heroku.tar.gz >/dev/null 2>&1
   mv geos $CACHE_DIR/geos-$GEOS_VERSION
   rm geos-$GEOS_VERSION-heroku.tar.gz
-  puts-step "GEOS installed"
+  echo "GEOS installed"
 fi
 
 # Install GDAL
 if [ ! -d $CACHE_DIR/gdal-$GDAL_VERSION ]; then
   cd $BUILD_DIR
-  puts-step "Fetching and installing GDAL ($GDAL_VERSION)"
+  echo "Fetching and installing GDAL ($GDAL_VERSION)"
   curl -O https://wapu-lib.s3.amazonaws.com/gdal-$GDAL_VERSION-heroku.tar.gz >/dev/null 2>&1
-  puts-step "Installing ..."
+  echo "Installing ..."
   tar xzvf gdal-$GDAL_VERSION-heroku.tar.gz >/dev/null 2>&1
   mv gdal $CACHE_DIR/gdal-$GDAL_VERSION
   rm gdal-$GDAL_VERSION-heroku.tar.gz
-  puts-step "GDAL installed"
+  echo "GDAL installed"
 fi
 
 # Install wkhtmltopdf
 if [ ! -d $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION ]; then
   cd $BUILD_DIR
-  puts-step "Fetching and installing wkhtmltopdf ($WKHTMLTOPDF_VERSION)"
+  echo "Fetching and installing wkhtmltopdf ($WKHTMLTOPDF_VERSION)"
   curl -O https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
-  puts-step "Installing ..."
+  echo "Installing ..."
   tar xzvf wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz >/dev/null 2>&1
-  puts-step "Moving ..."
+  echo "Moving ..."
   mkdir -p $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin
   mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin/wkhtmltopdf
-  puts-step "Removing ..."
+  echo "Removing ..."
   rm wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz
-  puts-step "Wkhtmltopdf installed"
+  echo "Wkhtmltopdf installed"
 fi
 
 # Create set-aside vendor folder and copy compiled files
