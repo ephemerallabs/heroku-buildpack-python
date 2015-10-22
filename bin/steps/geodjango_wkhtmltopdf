@@ -21,17 +21,17 @@ puts-step "Checking for wkhtmltopdf"
 if [ ! -d $CACHE_DIR/wkhtmltopdf ]; then
   # Download and extract wkhtmltopdf into target vendor directory.
   echo "Fetching and installing wkhtmltopdf 0.9.9" | indent
-  mkdir -p $BUILD_DIR/wkhtmltopdf
-  curl -s -L -o $BUILD_DIR/wkhtmltopdf/tmp-wkhtmltopdf.tar.gz $VENDORED_WKHTMLTOPDF
+  curl -s -L -o $BUILD_DIR/tmp-wkhtmltopdf.tar.gz $VENDORED_WKHTMLTOPDF
   echo "Caching ..." | indent
-  tar -zxvf $BUILD_DIR/wkhtmltopdf/tmp-wkhtmltopdf.tar.gz >/dev/null
-  rm $BUILD_DIR/wkhtmltopdf/tmp-wkhtmltopdf.tar.gz
+  tar -zxvf $BUILD_DIR/tmp-wkhtmltopdf.tar.gz >/dev/null
+  rm $BUILD_DIR/tmp-wkhtmltopdf.tar.gz
+  mkdir -p $CACHE_DIR/wkhtmltopdf
   mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf
 fi
 
 mkdir -p $BUILD_DIR/.geodjango
 mkdir -p $BUILD_DIR/.geodjango/wkhtmltopdf
-cp -R $CACHE_DIR/wkhtmltopdf/ $BUILD_DIR/.geodjango/wkhtmltopdf
+cp -R $CACHE_DIR/wkhtmltopdf $BUILD_DIR/.geodjango/wkhtmltopdf
 echo "Installed" | indent
 
 # make the lib path accessible
