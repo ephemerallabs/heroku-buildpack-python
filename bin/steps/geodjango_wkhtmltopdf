@@ -31,9 +31,9 @@ fi
 
 mkdir -p $BUILD_DIR/.geodjango
 mkdir -p $BUILD_DIR/.geodjango/wkhtmltopdf
-cp -R $CACHE_DIR/wkhtmltopdf-amd64 $BUILD_DIR/.geodjango/wkhtmltopdf
+cp -R $CACHE_DIR/wkhtmltopdf/wkhtmltopdf-amd64 $BUILD_DIR/.geodjango/wkhtmltopdf
 echo "Installed" | indent
 
 # make the lib path accessible
-export WKHTMLTOPDF_LIBRARY_PATH=$BUILD_DIR/.geodjango/wkhtmltopdf-amd64/bin
+export WKHTMLTOPDF_LIBRARY_PATH=$BUILD_DIR/.geodjango/wkhtmltopdf/wkhtmltopdf-amd64/
 echo "wkhtmltopdf installed and accessible with env variable 'WKHTMLTOPDF_LIBRARY_PATH'" | indent
