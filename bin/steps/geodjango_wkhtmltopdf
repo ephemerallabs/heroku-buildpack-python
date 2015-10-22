@@ -24,7 +24,7 @@ if [ ! -d $CACHE_DIR/wkhtmltopdf ]; then
   mkdir -p $BUILD_DIR/wkhtmltopdf
   curl -s -L -o $BUILD_DIR/wkhtmltopdf/tmp-wkhtmltopdf.tar.gz $VENDORED_WKHTMLTOPDF
   echo "Caching ..." | indent
-  tar -zxvf tmp-wkhtmltopdf.tar.gz >/dev/null
+  tar -zxvf $BUILD_DIR/wkhtmltopdf/tmp-wkhtmltopdf.tar.gz >/dev/null
   rm tmp-wkhtmltopdf.tar.gz
   mv wkhtmltopdf-amd64 $CACHE_DIR/wkhtmltopdf
 fi
