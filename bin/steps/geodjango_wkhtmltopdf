@@ -31,7 +31,7 @@ fi
 
 mkdir -p $BUILD_DIR/.geodjango
 mkdir -p $BUILD_DIR/.geodjango/wkhtmltopdf
-cp -R $CACHE_DIR/wkhtmltopdf/wkhtmltopdf-amd64 $BUILD_DIR/.geodjango/wkhtmltopdf
+cp -R $CACHE_DIR/wkhtmltopdf/ $BUILD_DIR/.geodjango/wkhtmltopdf
 echo "Installed" | indent
 
 # make the lib path accessible
