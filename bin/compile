@@ -205,7 +205,7 @@ mkdir -p vendor
 cp -R $CACHE_DIR/geos-$GEOS_VERSION vendor
 cp -R $CACHE_DIR/wkhtmltopdf-$WKHTMLTOPDF_VERSION vendor
 
-BIN_PATH="$BUILD_DIR/vendor/gdal-$GDAL_VERSION/bin:$BUILD_DIR/vendor/geos-$GEOS_VERSION/bin:$BUILD_DIR/vendor/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin:$PATH"
+BIN_PATH="$BUILD_DIR/vendor/geos-$GEOS_VERSION/bin:$BUILD_DIR/vendor/wkhtmltopdf-$WKHTMLTOPDF_VERSION/bin:$PATH"
 # Add GEOS and GDAL to paths AND wkhtmltopdf
 export PATH=$BIN_PATH
 export LIBRARY_PATH=$BUILD_DIR/vendor/geos-$GEOS_VERSION/lib:$LIBRARY_PATH
