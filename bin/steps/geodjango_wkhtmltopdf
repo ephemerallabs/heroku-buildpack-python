@@ -30,10 +30,9 @@ if [ ! -d $CACHE_DIR/wkhtmltopdf ]; then
 fi
 
 mkdir -p $BUILD_DIR/.geodjango
-mkdir -p $BUILD_DIR/.geodjango/wkhtmltopdf
-cp -R $CACHE_DIR/wkhtmltopdf $BUILD_DIR/.geodjango/wkhtmltopdf
+cp -R $CACHE_DIR/wkhtmltopdf $BUILD_DIR/.geodjango
 echo "Installed" | indent
 
 # make the lib path accessible
-export WKHTMLTOPDF_LIBRARY_PATH=$BUILD_DIR/.geodjango/wkhtmltopdf/wkhtmltopdf-amd64/
+export WKHTMLTOPDF_LIBRARY_PATH=$BUILD_DIR/.geodjango/wkhtmltopdf/
 echo "wkhtmltopdf installed and accessible with env variable 'WKHTMLTOPDF_LIBRARY_PATH'" | indent
