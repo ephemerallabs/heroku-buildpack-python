@@ -206,6 +206,7 @@ bpwatch start geodjango_install
   source $BIN_DIR/steps/geos
   source $BIN_DIR/steps/proj4
   source $BIN_DIR/steps/gdal
+  source $BIN_DIR/steps/wkhtmltopdf
 bpwatch stop geodjango_install
 
 # Install Mercurial if it appears to be required.

@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# This script serves as the wkhtmltopdf install step
+# based on geodjango buildpack
+# [**GeoDjango Buildpack**](https://github.com/dulaccc/heroku-buildpack-geodjango)
+# compiler.
+#
+# A [buildpack](http://devcenter.heroku.com/articles/buildpacks) is an
+# adapter between a Python application and Heroku's runtime.
+#
+# This script is invoked by [`bin/compile`](/).
+
+# The location of the pre-compiled libmemcached binary.
+VENDORED_WKHTMLTOPDF="https://wapu-lib.s3.amazonaws.com/wkhtmltopdf-$WKHTMLTOPDF_VERSION-static-amd64.tar.gz"
+
+# Syntax sugar.
+source $BIN_DIR/utils
+
+puts-step "Checking for wkhtmltopdf"
+
+if [ ! -d $CACHE_DIR/geos ]; then
+  # Download and extract wkhtmltopdf into target vendor directory.
+  echo "Fetching and installing GEOS 3.3.2" | indent
+  curl -s -L -o tmp-wkhtmltopdf.tar.gz $VENDORED_GEOS
+  echo "Caching ..." | indent
+  tar -zxvf tmp-wkhtmltopdf.tar.gz >/dev/null
+  rm tmp-wkhtmltopdf.tar.gz
+  mv wkhtmltopdf-amd64 $CACHE_DIR
+fi
+
+mkdir -p $BUILD_DIR/.geodjango
+cp -R $CACHE_DIR/wkhtmltopdf-amd64 $BUILD_DIR/.geodjango
+echo "Installed" | indent
+
+# make the lib path accessible
+export WKHTMLTOPDF_LIBRARY_PATH=$BUILD_DIR/.geodjango/wkhtmltopdf-amd64/bin
+echo "wkhtmltopdf installed and accessible with env variable 'WKHTMLTOPDF_LIBRARY_PATH'" | indent
