@@ -194,7 +194,7 @@ sub-env $BIN_DIR/steps/collectstatic
 #
 
 # Set context environment variables.
-set-env PATH '$HOME/.heroku/python/bin:$WKHTMLTOPDF_LIBRARY_PATH:$PATH'
+set-env PATH $HOME/.heroku/python/bin:$WKHTMLTOPDF_LIBRARY_PATH:$PATH
 set-env PYTHONUNBUFFERED true
 set-env PYTHONHOME /app/.heroku/python
 set-env GEOS_LIBRARY_PATH $GEOS_LIBRARY_PATH
